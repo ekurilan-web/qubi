@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="חידון אוטיזם">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#a3deff">
+    
+    <title>חידון זהות ושייכות אוטיסטית - גרסה לילדים גדולים</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%231a5c7c%22>🧠</text></svg>">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+        }
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f0f9ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            direction: rtl;
+            max-width: 1200px;
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            min-height: 100vh;
+            
+            padding-top: max(20px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 25px;
+            background: linear-gradient(135deg, #a3deff 0%, #6ecbf5 100%);
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(110, 203, 245, 0.3);
+            border: 4px solid #4db8f0;
+            position: relative;
+            
+            padding-left: max(25px, env(safe-area-inset-left));
+            padding-right: max(25px, env(safe-area-inset-right));
+        }
+        
+        h1 {
+            color: #1a5c7c;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: #2a7a9e;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .intro {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 3px solid #c2e6ff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .intro h2 {
+            color: #1a5c7c;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .intro ul {
+            padding-right: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .intro li {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .quiz-container {
+            background-color: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 3px solid #e1f5fe;
+            
+            padding-left: max(35px, env(safe-area-inset-left));
+            padding-right: max(35px, env(safe-area-inset-right));
+        }
+        
+        .question-counter {
+            color: #1a5c7c;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #c2e6ff;
+        }
+        
+        .question {
+            font-size: 1.8rem;
+            color: #0d3c56;
+            margin-bottom: 35px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+            background-color: #f5fbff;
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid #c2e6ff;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            margin-bottom: 35px;
+        }
+        
+        .option {
+            background-color: #f5fbff;
+            border: 3px solid #c2e6ff;
+            border-radius: 18px;
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.4rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            min-height: 85px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .option:active {
+            background-color: #e1f5fe;
+            transform: scale(0.98);
+        }
+        
+        @media (hover: hover) {
+            .option:hover {
+                background-color: #e1f5fe;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        .option.selected {
+            background-color: #d1f0ff;
+            border-color: #4db8f0;
+        }
+        
+        .option.correct {
+            background-color: #d4f7e6;
+            border-color: #2ecc71;
+        }
+        
+        .option.wrong {
+            background-color: #ffeaea;
+            border-color: #ff6b6b;
+        }
+        
+        .option-letter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: #4db8f0;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            border: 3px solid white;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .option.correct .option-letter {
+            background-color: #2ecc71;
+        }
+        
+        .option.wrong .option-letter {
+            background-color: #ff6b6b;
+        }
+        
+        .feedback {
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border: 3px solid #c2e6ff;
+            background-color: #f5fbff;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback-title {
+            font-weight: 700;
+            color: #1a5c7c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .feedback-text {
+            font-size: 1.4rem;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .next-btn, .restart-btn {
+            background-color: #4db8f0;
+            color: white;
+            border: none;
+            border-radius: 18px;
+            padding: 22px 45px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 30px;
+            display: inline-block;
+            box-shadow: 0 6px 15px rgba(77, 184, 240, 0.3);
+            min-height: 70px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            -webkit-appearance: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .next-btn:active, .restart-btn:active {
+            background-color: #3aa8e0;
+            transform: scale(0.98);
+        }
+        
+        @media (hover: hover) {
+            .next-btn:hover, .restart-btn:hover {
+                background-color: #3aa8e0;
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(77, 184, 240, 0.4);
+            }
+        }
+        
+        .next-btn:disabled {
+            background-color: #b0e0f6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .progress-bar {
+            height: 18px;
+            background-color: #e1f5fe;
+            border-radius: 9px;
+            margin: 25px 0 35px;
+            overflow: hidden;
+            border: 2px solid #c2e6ff;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #6ecbf5 0%, #4db8f0 100%);
+            border-radius: 9px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 35px 0;
+            min-height: 220px;
+        }
+        
+        .visual-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 120px;
+            background-color: #e1f5fe;
+            color: #1a5c7c;
+            border: 5px solid white;
+        }
+        
+        .hint-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .hint-btn {
+            background-color: #ffcc80;
+            color: #5d4037;
+            border: none;
+            border-radius: 15px;
+            padding: 18px 30px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 60px;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            -webkit-appearance: none;
+            box-shadow: 0 4px 10px rgba(255, 204, 128, 0.3);
+        }
+        
+        .hint-btn:active {
+            background-color: #ffb74d;
+            transform: scale(0.98);
+        }
+        
+        .hint-box {
+            background-color: #fff9e6;
+            border: 3px dashed #ffcc80;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .hint-box.show {
+            display: block;
+        }
+        
+        .hint-title {
+            font-weight: 700;
+            color: #5d4037;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+        }
+        
+        .results {
+            display: none;
+            text-align: center;
+            padding: 50px 35px;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 35px;
+            border: 4px solid #a3deff;
+            
+            padding-left: max(35px, env(safe-area-inset-left));
+            padding-right: max(35px, env(safe-area-inset-right));
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .results-title {
+            color: #1a5c7c;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .score {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #4db8f0;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message {
+            font-size: 1.6rem;
+            color: #2a7a9e;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .key-points {
+            text-align: right;
+            background-color: #f5fbff;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 35px 0;
+            border-right: 6px solid #4db8f0;
+        }
+        
+        .key-points h3 {
+            color: #1a5c7c;
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+            text-align: center;
+        }
+        
+        .key-points ul {
+            padding-right: 35px;
+        }
+        
+        .key-points li {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            line-height: 1.7;
+        }
+        
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e1f5fe;
+            border-radius: 50%;
+            font-size: 2.2rem;
+            color: #1a5c7c;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border: 3px solid white;
+        }
+        
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .topic-tag {
+            background-color: #e1f5fe;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1a5c7c;
+            border: 3px solid #c2e6ff;
+            font-size: 1.2rem;
+        }
+        
+        .settings {
+            margin-top: 35px;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 3px solid #e1f5fe;
+        }
+        
+        .settings p {
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #1a5c7c;
+            font-size: 1.4rem;
+        }
+        
+        .setting-btn {
+            background-color: #e1f5fe;
+            border: 3px solid #4db8f0;
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin: 8px;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.3rem;
+            color: #1a5c7c;
+            transition: all 0.2s ease;
+            min-height: 60px;
+            min-width: 140px;
+            -webkit-appearance: none;
+            font-weight: 600;
+        }
+        
+        .setting-btn:active {
+            background-color: #4db8f0;
+            color: white;
+            transform: scale(0.98);
+        }
+        
+        .setting-btn.active {
+            background-color: #4db8f0;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #2a7a9e;
+            font-size: 1.1rem;
+            padding-top: 30px;
+            border-top: 3px solid #e1f5fe;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.07); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .celebrate {
+            animation: pulse 0.6s ease 3;
+        }
+        
+        .bounce {
+            animation: bounce 0.6s ease;
+        }
+        
+        @media (orientation: landscape) and (max-height: 600px) {
+            .visual {
+                display: none;
+            }
+            
+            header {
+                padding: 20px 25px;
+                margin-bottom: 25px;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+                margin-bottom: 25px;
+                padding: 20px;
+            }
+            
+            .option {
+                padding: 20px 25px;
+                min-height: 70px;
+                font-size: 1.3rem;
+            }
+            
+            .quiz-container {
+                padding: 25px;
+            }
+            
+            .next-btn, .restart-btn {
+                padding: 20px 35px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                font-size: 19px;
+            }
+            
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .option {
+                font-size: 1.2rem;
+                padding: 22px;
+                min-height: 75px;
+            }
+            
+            .option-letter {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+            
+            .next-btn, .restart-btn {
+                padding: 20px 35px;
+                font-size: 1.4rem;
+            }
+            
+            .visual-image {
+                width: 190px;
+                height: 190px;
+                font-size: 105px;
+            }
+            
+            .score {
+                font-size: 4rem;
+            }
+            
+            .message {
+                font-size: 1.5rem;
+            }
+            
+            .intro {
+                padding: 25px;
+            }
+            
+            .quiz-container {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question {
+                font-size: 1.4rem;
+                padding: 20px;
+            }
+            
+            .option {
+                padding: 20px 18px;
+                font-size: 1.1rem;
+                gap: 18px;
+            }
+            
+            .option-letter {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+            
+            .visual-image {
+                width: 170px;
+                height: 170px;
+                font-size: 95px;
+            }
+            
+            .next-btn, .restart-btn {
+                padding: 18px 28px;
+                font-size: 1.3rem;
+                max-width: 100%;
+            }
+            
+            .setting-btn {
+                min-width: 110px;
+                padding: 12px 18px;
+                font-size: 1.1rem;
+                margin: 5px;
+            }
+            
+            .icons {
+                gap: 15px;
+            }
+            
+            .icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.8rem;
+            }
+        }
+        
+        body.low-stimulation .quiz-container,
+        body.low-stimulation .results,
+        body.low-stimulation .intro {
+            box-shadow: none;
+            border: 3px solid #ccc;
+        }
+        
+        body.low-stimulation .option {
+            border: 3px solid #ccc;
+        }
+        
+        body.low-stimulation .option:active {
+            transform: none;
+        }
+        
+        body.low-stimulation .next-btn,
+        body.low-stimulation .restart-btn,
+        body.low-stimulation .hint-btn {
+            box-shadow: none;
+        }
+        
+        body.low-stimulation .next-btn:active,
+        body.low-stimulation .restart-btn:active,
+        body.low-stimulation .hint-btn:active {
+            transform: none;
+        }
+        
+        body.large-font {
+            font-size: 22px;
+        }
+        
+        body.large-font .question {
+            font-size: 1.9rem;
+        }
+        
+        body.large-font .option {
+            font-size: 1.5rem;
+        }
+        
+        body.large-font .option-letter {
+            width: 55px;
+            height: 55px;
+            font-size: 1.6rem;
+        }
+        
+        .ios-device .option {
+            cursor: default;
+        }
+        
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .concept-badge {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 0 5px;
+            border: 2px solid #ef9a9a;
+        }
+    </style>
+</head>
+<body class="no-select">
+    <header>
+        <h1>חידון זהות אוטיסטית - לגילי נוער</h1>
+        <div class="subtitle">למידה מעמיקה על זהות, חוזקות ואתגרים</div>
+        
+        <div class="icons">
+            <div class="icon">🚀</div>
+            <div class="icon">💡</div>
+            <div class="icon">⚡</div>
+            <div class="icon">🔋</div>
+        </div>
+        
+        <div class="topics">
+            <div class="topic-tag">מיסוך ושחיקה</div>
+            <div class="topic-tag">מיקוד-על וחוזקות</div>
+            <div class="topic-tag">ויסות חושי</div>
+            <div class="topic-tag">ייצוג עצמי</div>
+            <div class="topic-tag">תקשורת אוטיסטית</div>
+            <div class="topic-tag">חברות בקהילה</div>
+        </div>
+    </header>
+    
+    <div class="intro">
+        <h2>ברוכים הבאים לחידון לגילי נוער!</h2>
+        <p>בגרסה הזו של החידון נצלול לעומק של נושאים חשובים:</p>
+        <ul>
+            <li>מיסוך, שחיקה אוטיסטית ו"סוללה" רגשית</li>
+            <li>חוזקות כמו מיקוד-על ותחומי עניין מיוחדים</li>
+            <li>ויסות חושי והצפה - איך עובד "מעבד החושים" האוטיסטי</li>
+            <li>ייצוג עצמי ובקשות התאמות</li>
+            <li>תקשורת אוטיסטית ויצירת חברויות</li>
+            <li>לקיחת מקום בדיוק מי שאנחנו</li>
+        </ul>
+        <p style="text-align: center; font-weight: 600; color: #1a5c7c; margin-top: 20px; padding: 15px; background-color: #e1f5fe; border-radius: 15px; border: 2px solid #4db8f0;">
+            החידון כולל 20 שאלות מעמיקות. לכל שאלה 4 תשובות אפשריות. ניתן להשתמש ב"רמז" אם צריך עזרה. בהצלחה! ✨
+        </p>
+        
+        <div class="settings">
+            <p>הגדרות גישה ונגישות:</p>
+            <button class="setting-btn" id="font-size-btn">גדול טקסט</button>
+            <button class="setting-btn" id="low-stim-btn">פחות גירויים</button>
+            <button class="setting-btn active" id="normal-btn">עיצוב רגיל</button>
+        </div>
+    </div>
+    
+    <div class="quiz-container">
+        <div class="question-counter">
+            <i class="fas fa-brain"></i>
+            <span>שאלה <span id="current-question">1</span> מתוך 20</span>
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="visual">
+            <div id="visual-image" class="visual-image">🧠</div>
+        </div>
+        
+        <div class="question" id="question">טוען שאלה...</div>
+        
+        <div class="hint-container">
+            <button class="hint-btn" id="hint-btn">
+                <i class="fas fa-lightbulb"></i>
+                הצג רמז לחשיבה
+            </button>
+            <div class="hint-box" id="hint-box">
+                <div class="hint-title">
+                    <i class="fas fa-key"></i>
+                    רמז לחשיבה:
+                </div>
+                <div id="hint-text"></div>
+            </div>
+        </div>
+        
+        <div class="options" id="options">
+            <!-- האפשרויות יוטענו כאן באמצעות JavaScript -->
+        </div>
+        
+        <div class="feedback" id="feedback">
+            <div class="feedback-title">
+                <span id="feedback-icon"></span>
+                <span id="feedback-title"></span>
+            </div>
+            <div class="feedback-text" id="feedback-text"></div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="next-btn" id="next-btn" disabled>השאלה הבאה ➔</button>
+        </div>
+    </div>
+    
+    <div class="results" id="results">
+        <h2 class="results-title">כל הכבוד! סיימת את החידון! 🎓</h2>
+        <div class="score" id="score">0/20</div>
+        <div class="message" id="message"></div>
+        
+        <div class="key-points">
+            <h3>תובנות מרכזיות שלמדנו:</h3>
+            <ul>
+                <li><span class="concept-badge">מיסוך</span> דורש אנרגיה רבה ומוביל לשחיקה - חשוב לאזן בין הסתגלות חברתית לשמירה על העצמי</li>
+                <li><span class="concept-badge">מיקוד-על</span> היא חוזקה ייחודית שמאפשרת העמקה בידע והתמקצעות</li>
+                <li><span class="concept-badge">מעבד חושים</span> אוטיסטי קולט פרטים רבים - זו יכולת וגם אתגר שדורש ויסות</li>
+                <li><span class="concept-badge">ייצוג עצמי</span> הוא כישור חיים קריטי - לדעת מה אנחנו צריכים ולדבר על זה</li>
+                <li><span class="concept-badge">תחומי עניין</span> הם מקור לשמחה, ידע והרגעה - לא משהו להתבייש בו</li>
+                <li><span class="concept-badge">סטימינג</span> הוא כלי ויסות טבעי - עוזר לגוף ולנפש להירגע</li>
+                <li><span class="concept-badge">שחיקה אוטיסטית</span> היא מצב ממשי של תשישות שדורש זמן התאוששות והתאמות</li>
+                <li>תקשורת אוטיסטית ישירה וממוקדת היא סגנון תקשורת תקף, לא פגם</li>
+                <li>חברות אוטיסטית יכולה להיראות שונה - וזה בסדר גמור</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="restart-btn" id="restart-btn">
+                <i class="fas fa-redo"></i>
+                לשחק שוב - לרענן ידע
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p><strong>חידון זהות אוטיסטית - גרסה לגילי נוער</strong></p>
+        <p>נוצר עם מחשבה על צרכי ההבנה וההעמקה של נוער אוטיסטי. מתאים לשימוש עצמי, בקבוצות למידה או בשיחות עם אנשי מקצוע.</p>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #5c8ca7;">החידון מותאם לשימוש בטלפונים, מחשבים וטאבלטים</p>
+    </footer>
+    
+    <script>
+        // נתוני החידון לגילי נוער עם 20 שאלות
+        const quizData = [
+            {
+                question: "מהו 'מיסוך'?",
+                options: [
+                    "לשחק במשחק מחשב עם דמות שיש לה מסכה",
+                    "לבישת בגדים מיוחדים כדי להתבלט",
+                    "לעשות רעש כדי לא לשמוע רעשים של אחרים",
+                    "להסתיר תכונות אוטיסטיות כדי להתאים לציפיות חברתיות"
+                ],
+                correct: 3,
+                explanation: "מיסוך הוא מאמץ להסתיר תכונות אוטיסטיות כדי להתאים לציפיות חברתיות. זה יכול לכלול לדמות תנועות גוף, להקפיד על קשר עין, או להימנע מתנועות מרגיעות (סטימינג) בפומבי. מיסוך יכול להיות מעייף מאוד.",
+                hint: "זה קשור להתנהגות שמנסים להסתיר כדי להתאים לחברה.",
+                image: "🎭"
+            },
+            {
+                question: "מהי דוגמה למיסוך?",
+                options: [
+                    "ילדה שרעש מציף אותה, אבל מחייכת ולא אומרת כלום כדי שלא יחשבו שהיא מוזרה",
+                    "ילד שקשה לו עם ריח של משהו מסוים",
+                    "ילדה שמשחקת עם החפצים בקלמר שלה באמצע השיעור",
+                    "ילד שאוהב חתולים"
+                ],
+                correct: 0,
+                explanation: "כשילדה מרגישה הצפה מרעש אבל מחייכת ושותקת כדי לא לבלוט - זו דוגמה קלאסית למיסוך. היא מסתירה את אי הנוחות האמיתית שלה כדי להתאים לציפיות החברתיות ולהימנע משיפוט.",
+                hint: "חפשו את הדוגמה בה הילדה מסתירה את מה שהיא מרגישה באמת.",
+                image: "🙊"
+            },
+            {
+                question: "למה תחומי העניין המיוחדים שלנו כל כך חשובים?",
+                options: [
+                    "כי הם מקור לשמחה וידע, ועוזרים לנו להירגע ולהתאפס כשהעולם מציף",
+                    "כי כל הילדים האחרים מתעניינים באותם דברים",
+                    "כי הם מביאים לנו ציונים טובים בבית הספר",
+                    "כי הם מפריעים לנו להתרכז בדברים החשובים באמת"
+                ],
+                correct: 0,
+                explanation: "תחומי עניין מיוחדים הם מקור לשמחה, ידע והרגעה. הם יכולים לעזור לנו להתמודד עם מצבים מלחיצים ולהתאפס כשהעולם מציף. הם חלק חשוב ממי שאנחנו.",
+                hint: "תחומי עניין יכולים להיות מקור לנחמה והנאה.",
+                image: "🌟"
+            },
+            {
+                question: "מהו 'מעבד החושים' של מערכת ההפעלה האוטיסטית?",
+                options: [
+                    "מעבד שהוא פחות רגיש ממעבד נוירו-טיפיקלי, ולכן מפספס הרבה דברים",
+                    "מעבד שמסוגל לעבד רק חוש אחד בכל פעם, כמו ראייה או שמיעה",
+                    "מעבד שפועל בצורה הטובה ביותר בסביבות רועשות וצפופות",
+                    "מעבד שמבחין בהמון פרטים ומידע חושי"
+                ],
+                correct: 3,
+                explanation: "המעבד החושי האוטיסטי מבחין בהמון פרטים ומידע חושי. זה אומר שאנחנו קולטים יותר רעשים, ריחות, מראות ותחושות מאנשים אחרים. לפעמים זה יכול להציף, אבל גם מאפשר לנו לשים לב לדברים שאחרים מפספסים.",
+                hint: "זה קשור ליכולת קליטת מידע חושי רב.",
+                image: "🧠"
+            },
+            {
+                question: "מה הדבר הבסיסי שמערכת העצבים שלנו מחפשת כל הזמן בסביבה?",
+                options: [
+                    "רמזים של ביטחון ושל סכנה",
+                    "ריגושים ואתגרים חדשים",
+                    "דרכים להתחמק ממשימות",
+                    "סיבות לצחוק ולהיות בשמחה"
+                ],
+                correct: 0,
+                explanation: "מערכת העצבים שלנו כל הזמן סורקת את הסביבה לרמזים של ביטחון ושל סכנה. כשאנחנו מרגישים בטוחים, אנחנו יכולים להיות רגועים יותר ולחשוב בבהירות. כשאנחנו חושים בסכנה (גם אם היא לא ממשית), הגוף נכנס למצב לחץ.",
+                hint: "המוח שלנו מנסה להגן עלינו על ידי חיפוש מתמיד אחר סימנים מסוכנים.",
+                image: "🛡️"
+            },
+            {
+                question: "מה נכון להגיד על חברות אצל אוטיסטים?",
+                options: [
+                    "הדרך היחידה להיות חברים היא לדבר כל הזמן על רגשות",
+                    "אוטיסטים לא צריכים חברים בכלל",
+                    "הדרך ליצירת קשרים לפעמים שונה, ולעיתים סביב תחומי עניין משותפים",
+                    "צריך שתהיה לך קבוצה גדולה של חברים כדי להרגיש שייך"
+                ],
+                correct: 2,
+                explanation: "חברות אצל אוטיסטים יכולה להיראות שונה. לפעמים קשרים נוצרים סביב תחומי עניין משותפים, ולפעמים אנחנו מעדיפים פחות חברים אבל קשרים עמוקים יותר. כל דרך היא תקינה.",
+                hint: "חברות יכולה להתבסס על דברים שמשותפים לשני הצדדים.",
+                image: "👥"
+            },
+            {
+                question: "כשאנחנו מספרים המון פרטים על משהו שאנחנו אוהבים (אינפו-דאמפינג), מה זה בדרך כלל אומר?",
+                options: [
+                    "שאין לנו שום דבר אחר לדבר עליו",
+                    "שאנחנו מנסים בכוונה להפריע להם לדבר או לשעמם אותם",
+                    "שאנחנו רוצים להראות שאנחנו יודעים יותר מהם",
+                    "זו הדרך שלנו לחלוק שמחה והתלהבות ולהתחבר עם אחרים"
+                ],
+                correct: 3,
+                explanation: "אינפו-דאמפינג (הצפת מידע) היא דרך לחלוק את השמחה וההתלהבות שלנו עם אחרים. אנחנו מספרים פרטים כי אנחנו נרגשים ומקווים שהאדם השני ירצה להכיר את מה שמלהיב אותנו. זו דרך להתחבר.",
+                hint: "זו דרך לשתף את ההתלהבות שלנו בנושא אהוב.",
+                image: "💬"
+            },
+            {
+                question: "מה זה 'ייצוג עצמי'?",
+                options: [
+                    "היכולת לזהות, להבין ולבטא את הצרכים והרצונות שלך בפני אחרים",
+                    "להיות הכי טוב בכיתה ולייצג אותה בתחרויות",
+                    "לתת למישהו אחר, כמו הורה או מורה, לדבר תמיד בשבילך",
+                    "לשחק דמות של מישהו אחר בהצגה"
+                ],
+                correct: 0,
+                explanation: "ייצוג עצמי הוא היכולת לזהות מה אנחנו צריכים, להבין את זה, ולתקשר את זה לאחרים. זה אומר לדבר על מה שמתאים לנו ומה לא, ולבקש התאמות כשצריך. זו מיומנות חשובה לחיים.",
+                hint: "זה קשור להבנה ובקשה של מה שאנחנו צריכים.",
+                image: "🗣️💙"
+            },
+            {
+                question: "מהי דוגמה לייצוג עצמי?",
+                options: [
+                    "ילד שאומר למורה: 'הרעש חזק לי, אפשר לעבוד במקום שקט?'",
+                    "ילדה שאומרת לחברים: 'אני צריכה הפסקה רגע כדי להירגע.'",
+                    "ילד שמסביר: 'יותר קל לי להבין ולזכור כשכותבים לי את ההוראות.'",
+                    "כל התשובות נכונות"
+                ],
+                correct: 3,
+                explanation: "ייצוג עצמי יכול לבוא לידי ביטוי במגוון דרכים: לבקש התאמה לסביבה, לבקש הפסקה כשצריך, או להסביר את צורת הלמידה המועדפת. כל הדוגמאות הן ייצוג עצמי טוב - לדבר בגלוי על מה שאנחנו צריכים כדי להרגיש טוב יותר.",
+                hint: "ייצוג עצמי הוא לבטא את הצרכים שלנו במגוון דרכים.",
+                image: "🗣️"
+            },
+            {
+                question: "למה חשוב שנוכל לבקש את מה שאנחנו צריכים (למשל, 'אני צריך הפסקה' או 'המוזיקה רועשת לי מדי')?",
+                options: [
+                    "כדי להתלונן ולהראות כמה קשה לנו",
+                    "זה לא באמת חשוב, אנחנו צריכים ללמוד להסתדר בכל מצב, גם אם קשה",
+                    "כי זו הדרך לשלוט באחרים ולגרום להם לעשות מה שאנחנו רוצים",
+                    "כדי שאנשים יבינו אותנו טוב יותר ויוכלו לעזור לנו להרגיש בטוח ונוח"
+                ],
+                correct: 3,
+                explanation: "כשאנחנו מבקשים את מה שאנחנו צריכים, אנחנו עוזרים לאחרים להבין איך הם יכולים לתמוך בנו. זה מאפשר לנו להרגיש בטוחים ונוחים יותר, ומפחית את הסיכוי שנגיע למצב של הצפה או שחיקה.",
+                hint: "בקשה כנה עוזרת לאחרים לעזור לנו.",
+                image: "🕐"
+            },
+            {
+                question: "אחת החוזקות האוטיסטיות היא 'מיקוד-על'. מה זה אומר?",
+                options: [
+                    "היכולת להפנות את כוח העיבוד לנושא אחד ולצלול אליו לעומק",
+                    "הצורך להחליף נושאים במהירות כדי לא להשתעמם",
+                    "להיות טובים בלהעמיד פנים שאנחנו מרוכזים",
+                    "היכולת להקשיב לכמה שיחות בבת אחת"
+                ],
+                correct: 0,
+                explanation: "מיקוד-על היא היכולת להתרכז בנושא אחד בצורה עמוקה מאוד. זה מאפשר לנו ללמוד ולהבין נושאים מורכבים, ולעיתים לגלות דברים שאחרים מפספסים. זו חוזקה שיכולה להוביל להצטיינות בתחומים מסוימים.",
+                hint: "זו היכולת להעמיק מאוד בנושא אחד.",
+                image: "🔍"
+            },
+            {
+                question: "מה גורם ל'סוללה' שלנו להתרוקן מהר?",
+                options: [
+                    "מיסוך - לנסות להתנהג כמו אחרים",
+                    "אירועים עם הרבה אנשים",
+                    "בילוי במקום רועש",
+                    "כל התשובות נכונות"
+                ],
+                correct: 3,
+                explanation: "עיבוד חושי בסביבה לא נגישה ומיסוך דורשים מאמץ נפשי גדול מאוד. כשאנחנו מנסים להתנהג בצורה שאינה טבעית לנו, אנחנו משתמשים בהרבה אנרגיה. זה יכול לגרום לנו להרגיש עייפים, מתוחים ולפעמים מוצפים.",
+                hint: "זה קשור להתנהגות שאינה טבעית לנו ולמקומות עם הרבה גירויים.",
+                image: "🔋"
+            },
+            {
+                question: "מה יכול לעזור לנו להטעין את הסוללה?",
+                options: [
+                    "לא לעשות סטימינג כדי שאחרים לא יראו",
+                    "לקחת זמן לבד לעשות משהו מרגיע שאנחנו אוהבים",
+                    "לתרגל כמה שיותר להיות עם הרבה אנשים ובסביבה רועשת",
+                    "להכריח את עצמנו להישאר במקום הומה אדם עד שנתרגל"
+                ],
+                correct: 1,
+                explanation: "זמן לבד עם פעילות מרגיעה ואהובה יכול לעזור לנו להתאושש. זה מאפשר לנו לנוח מהמיסוך והגירויים, ולחזור למצב מאוזן יותר. כל אחד ימצא דברים שונים שמטעינים אותו.",
+                hint: "מנוחה ממיסוך ומגירויים.",
+                image: "⚡"
+            },
+            {
+                question: "איזו מהפעולות הבאות היא דוגמה טובה לכלי שיכול לעזור בוויסות חושי?",
+                options: [
+                    "לכעוס על מישהו שמדבר חזק מדי",
+                    "להרכיב אוזניות מפחיתות רעש בסביבה רועשת",
+                    "להתעלם מהרעש ולהתמקד במשהו אחר",
+                    "להכריח את עצמך להישאר במקום רועש כדי להתרגל"
+                ],
+                correct: 1,
+                explanation: "אוזניות מפחיתות רעש הן כלי שמפחית את כמות הרעש שמגיעה לאוזניים. זה יכול לעזור לנו להתמודד עם סביבות רועשות בלי להציף את מערכת החושים. כלים נוספים יכולים להיות משקולות, שמיכות כבדות, או צעצועי לעיסה.",
+                hint: "כלי פיזי שעוזר להפחית גירויים חושיים.",
+                image: "🎧"
+            },
+            {
+                question: "מדוע חשוב שאנשים יגידו לנו דברים בצורה ישירה, בלי רמזים או ציניות?",
+                options: [
+                    "כי אנחנו לא אוהבים לדבר עם אנשים",
+                    "כי זה עוזר למנוע בלבול וחרדה, ומאפשר להבין את הכוונה האמיתית",
+                    "כי אנחנו אוהבים שאומרים לנו בדיוק מה לעשות",
+                    "כי זה פחות מעניין כשהכל ברור"
+                ],
+                correct: 1,
+                explanation: "תקשורת ישירה עוזרת לנו להבין מה רוצים מאיתנו ומה הכוונה של האדם השני. רמזים וציניות יכולים לגרום לבלבול, חרדה ואי-הבנות. כשהכל ברור, אנחנו יכולים להגיב בצורה טובה יותר.",
+                hint: "תקשורת ברורה עוזרת להבנה טובה יותר.",
+                image: "📢"
+            },
+            {
+                question: "מה תפקידו של סטימינג (תנועות או קולות חזרתיים)?",
+                options: [
+                    "פעולה שנעשית כדי לעצבן",
+                    "לעזור לגוף ולרגשות להירגע ולהתאזן",
+                    "דרך לקבל תשומת לב מאחרים",
+                    "התנהגות 'מוזרה' שצריך להפסיק"
+                ],
+                correct: 1,
+                explanation: "סטימינג (קיצור של Self-Stimulatory Behavior) עוזר לנו לווסת את הגוף והרגשות. זה יכול לעזור להירגע, להתמקד, או להתמודד עם רגשות חזקים. זה טבעי ומועיל, ומותר לנו לעשות את זה.",
+                hint: "זו התנהגות שעוזרת בוויסות עצמי.",
+                image: "🔄"
+            },
+            {
+                question: "במה שונה סגנון התקשורת האוטיסטי מזה הנוירוטיפיקלי?",
+                options: [
+                    "אין הבדל משמעותי",
+                    "התקשורת האוטיסטית מתרכזת בעיקר ב'סמול טוק', בעוד שהנוירוטיפיקלית בשיתוף מידע",
+                    "התקשורת האוטיסטית נוטה להיות ישירה ומדויקת, והנוירוטיפיקלית עקיפה ומרומזת",
+                    "התקשורת האוטיסטית תמיד בדיבור, בעוד שנוירוטיפיקלים משתמשים בשפת גוף, הקלדה ועוד"
+                ],
+                correct: 2,
+                explanation: "אוטיסטים נוטים לתקשר בצורה ישירה ומדויקת, בעוד נוירוטיפיקלים משתמשים יותר בתקשורת עקיפה ומרומזת, ומדגישים יצירת קשר ושיחה קלה. שני הסגנונות תקינים, אבל ההבדלים עלולים לגרום לאי-הבנות.",
+                hint: "אוטיסטים נוטים לישירות, נוירוטיפיקלים לעקיפות.",
+                image: "🗣️"
+            },
+            {
+                question: "לאוטיסטים יש כמה תכונות מיוחדות. מהי אחת החזקות שבהן?",
+                options: [
+                    "היכולת להשתעמם ממש מהר מכל דבר",
+                    "היכולת להיכנס לתוך נושא שאני אוהב/ת ולדעת עליו כל פרט",
+                    "היכולת לדבר בקלות עם אנשים שכרגע פגשנו על דברים קטנים",
+                    "אין לנו חוזקות מיוחדות"
+                ],
+                correct: 1,
+                explanation: "אוטיסטים רבים יכולים להעמיק בנושאים שמעניינים אותם וללמוד אותם ברמה גבוהה מאוד. זו חוזקה שיכולה להוביל למומחיות, יצירתיות ותרומות ייחודיות. חשוב לזכור שיש לנו גם חוזקות אחרות, כמו כנות ותשומת לב לפרטים.",
+                hint: "זה קשור למעבד המידע שלנו.",
+                image: "💪"
+            },
+            {
+                question: "מה קורה לגוף ולמוח שלנו כשיש הצפה חושית?",
+                options: [
+                    "זה אומר שאנחנו לא מתנהגים יפה בכוונה",
+                    "אנחנו נרגעים ומרגישים שלווה",
+                    "שום דבר מיוחד, זה מרגיש בדיוק כמו אצל כולם",
+                    "יכול להיות לנו קשה לחשוב, לדבר או לזוז, כי המוח שלנו מקבל יותר מדי מידע בבת אחת"
+                ],
+                correct: 3,
+                explanation: "במצב של הצפה חושית, המוח מוצף במידע חושי. זה יכול לגרום לקשיים בחשיבה, בדיבור או בתנועה. לפעמים זה יכול להוביל לכיבוי (shutdown) או להתפרצות (meltdown). זה לא משהו שאנחנו בוחרים, אלא תגובה טבעית של מערכת העצבים.",
+                hint: "המוח מקבל יותר מדי מידע והוא מתקשה לעבד.",
+                image: "🌊"
+            },
+            {
+                question: "מה הדבר הכי חשוב לזכור על להיות אוטיסט/ית?",
+                options: [
+                    "שמותר לי להיות בדיוק מי שאני",
+                    "שצריך לנסות להשתנות ולהיות כמו כולם",
+                    "שזה סוד שצריך להסתיר מאנשים אחרים",
+                    "שזה יעבור לי כשאגדל"
+                ],
+                correct: 0,
+                explanation: "אוטיזם הוא חלק מהזהות שלנו. הוא לא משהו שיש להתבייש בו או להסתיר. אנחנו יכולים ללמוד להתמודד עם האתגרים ולפתח את החוזקות שלנו. החברה צריכה לקבל אותנו כמו שאנחנו, ואנחנו צריכים לקבל את עצמנו.",
+                hint: "אוטיזם הוא חלק ממי שאנחנו, וזה בסדר.",
+                image: "💙"
+            }
+        ];
+
+        // אלמנטים ב-DOM
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const feedbackElement = document.getElementById('feedback');
+        const feedbackTitleElement = document.getElementById('feedback-title');
+        const feedbackTextElement = document.getElementById('feedback-text');
+        const feedbackIconElement = document.getElementById('feedback-icon');
+        const nextButton = document.getElementById('next-btn');
+        const progressElement = document.getElementById('progress');
+        const currentQuestionElement = document.getElementById('current-question');
+        const visualImageElement = document.getElementById('visual-image');
+        const resultsElement = document.getElementById('results');
+        const scoreElement = document.getElementById('score');
+        const messageElement = document.getElementById('message');
+        const restartButton = document.getElementById('restart-btn');
+        const hintButton = document.getElementById('hint-btn');
+        const hintBox = document.getElementById('hint-box');
+        const hintText = document.getElementById('hint-text');
+        const fontSizeBtn = document.getElementById('font-size-btn');
+        const lowStimBtn = document.getElementById('low-stim-btn');
+        const normalBtn = document.getElementById('normal-btn');
+        
+        // משתנים למעקב אחר מצב החידון
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+        
+        // הגדרות עיצוב
+        let largeFont = false;
+        let lowStimulation = false;
+        
+        // בדיקה אם זה מכשיר iOS
+        function isIOS() {
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform) ||
+            (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+        }
+        
+        // התאמות ספציפיות לאייפון
+        function applyIOSOptimizations() {
+            if (isIOS()) {
+                document.body.classList.add('ios-device');
+                
+                // הוספת אנימציות לחיצה לאייפון
+                document.querySelectorAll('.option, .next-btn, .restart-btn, .hint-btn, .setting-btn').forEach(button => {
+                    button.addEventListener('touchstart', function() {
+                        this.classList.add('active-touch');
+                    });
+                    
+                    button.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.classList.remove('active-touch');
+                        }, 150);
+                    });
+                });
+                
+                // מניעת double-tap zoom
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = Date.now();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, { passive: false });
+            }
+        }
+        
+        // אתחול החידון
+        function initQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            loadQuestion();
+            resultsElement.classList.remove('show');
+            updateSettingsDisplay();
+            applyIOSOptimizations();
+        }
+        
+        // טעינת שאלה
+        function loadQuestion() {
+            answered = false;
+            nextButton.disabled = true;
+            feedbackElement.classList.remove('show');
+            hintBox.classList.remove('show');
+            
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
+            
+            // עדכון התקדמות
+            progressElement.style.width = `${((currentQuestionIndex) / quizData.length) * 100}%`;
+            
+            // עדכון תמונה ויזואלית
+            visualImageElement.textContent = currentQuestion.image;
+            visualImageElement.classList.add('bounce');
+            setTimeout(() => {
+                visualImageElement.classList.remove('bounce');
+            }, 500);
+            
+            // עדכון רמז
+            hintText.textContent = currentQuestion.hint;
+            
+            // ניקוי האפשרויות הקודמות
+            optionsElement.innerHTML = '';
+            
+            // יצירת האפשרויות החדשות
+            currentQuestion.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.innerHTML = `
+                    <div class="option-letter">${String.fromCharCode(1488 + index)}</div>
+                    <div class="option-text">${option}</div>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            // עדכון גודל טקסט אם נבחר
+            updateFontSize();
+            
+            // עדכון מצב גירויים אם נבחר
+            updateStimulationMode();
+        }
+        
+        // עדכון גודל טקסט
+        function updateFontSize() {
+            if (largeFont) {
+                document.body.classList.add('large-font');
+            } else {
+                document.body.classList.remove('large-font');
+            }
+        }
+        
+        // עדכון מצב גירויים
+        function updateStimulationMode() {
+            if (lowStimulation) {
+                document.body.classList.add('low-stimulation');
+            } else {
+                document.body.classList.remove('low-stimulation');
+            }
+        }
+        
+        // בחירת תשובה
+        function selectOption(optionIndex) {
+            if (answered) return;
+            
+            answered = true;
+            const currentQuestion = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // סימון התשובה שבחר המשתמש
+            options[optionIndex].classList.add('selected');
+            
+            // בדיקה אם התשובה נכונה
+            const isCorrect = optionIndex === currentQuestion.correct;
+            
+            if (isCorrect) {
+                score++;
+                options[optionIndex].classList.add('correct');
+                feedbackTitleElement.textContent = "כל הכבוד! תשובה נכונה";
+                feedbackIconElement.textContent = "✅";
+                feedbackElement.classList.add('show');
+                
+                // אנימציה לחגיגה
+                options[optionIndex].classList.add('celebrate');
+            } else {
+                options[optionIndex].classList.add('wrong');
+                options[currentQuestion.correct].classList.add('correct');
+                feedbackTitleElement.textContent = "לא נכון, אבל זה בסדר!";
+                feedbackIconElement.textContent = "💡";
+                feedbackElement.classList.add('show');
+            }
+            
+            feedbackTextElement.textContent = currentQuestion.explanation;
+            nextButton.disabled = false;
+            
+            // גלילה אוטומטית לתשובה
+            setTimeout(() => {
+                feedbackElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
+        }
+        
+        // מעבר לשאלה הבאה או סיום החידון
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+                // גלילה לראש השאלה
+                setTimeout(() => {
+                    document.querySelector('.question').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                showResults();
+            }
+        }
+        
+        // הצגת תוצאות
+        function showResults() {
+            document.querySelector('.quiz-container').style.display = 'none';
+            resultsElement.classList.add('show');
+            
+            // חישוב הציון
+            scoreElement.textContent = `${score}/${quizData.length}`;
+            
+            // הודעה לפי הציון
+            let message = "";
+            if (score === quizData.length) {
+                message = "וואו! אתה מומחה/ית לזהות אוטיסטית! כל הכבוד! 🎓";
+            } else if (score >= quizData.length * 0.8) {
+                message = "מצוין! אתה מבין/ה הרבה על זהות אוטיסטית! 👍";
+            } else if (score >= quizData.length * 0.6) {
+                message = "טוב מאוד! אתה בדרך להבנה טובה של זהות אוטיסטית! 🌟";
+            } else {
+                message = "כל התחלה היא טובה! המשך ללמוד על זהות אוטיסטית! 💙";
+            }
+            
+            messageElement.textContent = message;
+            
+            // אנימציה לציון
+            scoreElement.classList.add('celebrate');
+            
+            // גלילה לתוצאות
+            setTimeout(() => {
+                resultsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+        
+        // אתחול מחדש של החידון
+        function restartQuiz() {
+            document.querySelector('.quiz-container').style.display = 'block';
+            resultsElement.classList.remove('show');
+            currentQuestionIndex = 0;
+            score = 0;
+            loadQuestion();
+            
+            // גלילה לראש העמוד
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
+        }
+        
+        // הצגת רמז
+        function showHint() {
+            hintBox.classList.toggle('show');
+            if (hintBox.classList.contains('show')) {
+                // גלילה לרמז אם הוא נפתח
+                setTimeout(() => {
+                    hintBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 300);
+            }
+        }
+        
+        // עדכון הגדרות
+        function updateSettingsDisplay() {
+            if (largeFont) {
+                fontSizeBtn.classList.add('active');
+            } else {
+                fontSizeBtn.classList.remove('active');
+            }
+            
+            if (lowStimulation) {
+                lowStimBtn.classList.add('active');
+                normalBtn.classList.remove('active');
+            } else {
+                lowStimBtn.classList.remove('active');
+                normalBtn.classList.add('active');
+            }
+        }
+        
+        // האזנה לאירועים
+        nextButton.addEventListener('click', nextQuestion);
+        restartButton.addEventListener('click', restartQuiz);
+        hintButton.addEventListener('click', showHint);
+        
+        fontSizeBtn.addEventListener('click', () => {
+            largeFont = !largeFont;
+            updateSettingsDisplay();
+            updateFontSize();
+        });
+        
+        lowStimBtn.addEventListener('click', () => {
+            lowStimulation = true;
+            updateSettingsDisplay();
+            updateStimulationMode();
+        });
+        
+        normalBtn.addEventListener('click', () => {
+            lowStimulation = false;
+            updateSettingsDisplay();
+            updateStimulationMode();
+        });
+        
+        // הוספת תמיכה למסכי מגע
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        
+        // אתחול החידון בעת טעינת הדף
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuiz();
+            
+            // הודעה למשתמש אם זה אייפון
+            if (isIOS()) {
+                console.log("חידון מותאם לאייפון - ניתן להוסיף למסך הבית!");
+            }
+        });
+        
+        // מניעת התנהגות ברירת מחדל של touch
+        document.addEventListener('touchmove', function(e) {
+            if (e.scale !== 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
